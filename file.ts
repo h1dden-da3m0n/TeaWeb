@@ -5,10 +5,10 @@ import * as crypto from "crypto";
 import * as http from "http";
 import * as url_utils from "url";
 import * as cp from "child_process";
+import {ChildProcess} from "child_process";
 import * as mt from "mime-types";
 import * as os from "os";
 import {PathLike} from "fs";
-import {ChildProcess} from "child_process";
 import * as https from "https";
 
 /* All project files */
@@ -585,7 +585,8 @@ namespace watcher {
             return cp.spawn(cmd, args, {
                 cwd: __dirname,
                 stdio: "pipe",
-                detached: true
+                detached: true,
+                env: Object.assign({ NODE_ENV: "development" }, process.env)
             });
     }
 
