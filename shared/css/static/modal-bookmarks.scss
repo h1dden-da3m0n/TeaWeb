@@ -1,6 +1,13 @@
 @import "properties";
 @import "mixin";
 
+$left-padding: .5em;
+$import-export-img-size: 1.6em;
+
+html:root {
+    --modal-import-export-hover: #28292b;
+}
+
 .modal .modal-bookmark-create {
 	.property {
 		margin-top: 5px;
@@ -77,13 +84,14 @@
 	}
 
 	.left {
+        position: relative;
 		min-width: 12em;
 		width: 30%;
 
 		flex-grow: 1;
 		flex-shrink: 1;
 
-		padding: .5em;
+		padding: $left-padding;
 		background-color: #212125;
 
 		display: flex;
@@ -102,6 +110,40 @@
 
 			@include text-dotdotdot();
 		}
+
+        .container-import-export {
+            display: flex;
+            position: absolute;
+            right: $left-padding; // same value as left padding value!
+            padding: .1em;
+            margin-top: .28em;
+            height: $import-export-img-size;
+
+            .button {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                padding: .1em;
+                margin: 0 .25em 0 .25em;
+                align-self: center;
+
+                cursor: pointer;
+                border-radius: .2em;
+
+                &:hover {
+                    background: var(--modal-import-export-hover);
+                }
+
+                > img {
+                    align-self: center;
+                    height: $import-export-img-size;
+                    width: $import-export-img-size;
+                }
+
+                @include transition($button_hover_animation_time ease-in-out);
+            }
+        }
 
 		.container-bookmarks {
 			flex-shrink: 1;
